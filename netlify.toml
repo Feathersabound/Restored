@@ -1,0 +1,3 @@
+[build]
+  publish = "restored"
+  command = "echo 'No build required'"
