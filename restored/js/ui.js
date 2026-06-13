@@ -64,7 +64,7 @@ function showCelebration() {
 // Render overall progress
 function renderProgress() {
   const completed = getCompleted();
-  const total = 12;
+  const total = 16; // Foundation modules (4) + Original modules (12)
   const pct = Math.round((completed.length / total) * 100);
 
   // Update progress bars
