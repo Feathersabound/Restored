@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breaking Soul Ties — Restored in Him</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B91C1C;
+  --red-dark:#7F1D1D;
+  --red-light:#FEF2F2;
+  --red-mid:#991B1B;
+  --black:#111;
+  --grey-1:#f9f7f4;
+  --grey-2:#f0ece6;
+  --grey-3:#e8e4de;
+  --grey-4:#999;
+  --grey-5:#555;
+  --border:#ede9e3;
+  --gold:#B45309;
+  --gold-light:#FFFBEB;
+}
+body{background:var(--grey-3);display:flex;justify-content:center;padding:20px 0;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;min-height:100vh}
+.phone{width:390px;background:var(--grey-1);border-radius:44px;overflow:hidden;position:relative;min-height:844px;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.sb{background:#fff;padding:14px 26px 6px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--black);flex-shrink:0}
+.body{flex:1;overflow-y:auto;padding-bottom:80px}
+.body::-webkit-scrollbar{display:none}
+.ph{background:#fff;padding:14px 16px 12px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--border);flex-shrink:0}
+.bk{width:32px;height:32px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:18px;color:var(--grey-5);text-decoration:none;flex-shrink:0}
+.ph-t{font-size:15px;font-weight:800;color:var(--black)}
+.ph-s{font-size:11px;color:var(--grey-4)}
+.mod-hero{background:var(--red);padding:22px 20px 26px;position:relative;overflow:hidden;flex-shrink:0}
+.mod-hero::before{content:"✝";position:absolute;right:-10px;top:-20px;font-size:140px;color:rgba(255,255,255,0.05);font-family:serif}
+.mh-step{font-size:11px;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:6px}
+.mh-t{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.mh-s{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+.card{background:#fff;border-radius:16px;padding:14px 15px;margin-bottom:11px;border:1px solid var(--border)}
+.card-label{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab-btn{padding:8px 14px;background:#f0ece6;border:none;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;color:var(--grey-5);transition:all 0.2s}
+.tab-btn.on{background:var(--red);color:#fff}
+.tab-content{display:none}
+.tab-content.on{display:block}
+.soul-tie-type{background:var(--red-light);border-left:3px solid var(--red);padding:12px;border-radius:0 8px 8px 0;margin-bottom:12px}
+.st-title{font-weight:800;color:var(--red);font-size:13px;margin-bottom:6px}
+.st-desc{font-size:12px;color:#333;line-height:1.6}
+.decl{background:var(--red);border-radius:14px;padding:18px;margin-bottom:12px}
+.dl-l{font-size:10px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.dl-t{font-size:15px;color:#fff;line-height:1.75;font-style:italic;margin-bottom:12px}
+.dl-v{display:flex;align-items:flex-start;gap:7px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5}
+.prac{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--border)}
+.prac-t{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:11px}
+.pstep{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f8f6f3}
+.pstep:last-child{border-bottom:none;padding-bottom:0}
+.pnum{width:22px;height:22px;background:var(--red-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--red);flex-shrink:0;margin-top:1px}
+.ptext{font-size:13px;color:#333;line-height:1.55}
+.ptext b{color:var(--black)}
+.info{background:var(--gold-light);border:1px solid #FDE68A;border-radius:12px;padding:11px 13px;font-size:12px;color:#78350F;margin-bottom:12px;line-height:1.55}
+.btn{width:100%;padding:15px;background:var(--red);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:9px;font-family:inherit;letter-spacing:-0.2px;display:block;text-align:center;text-decoration:none}
+.ci{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid #f8f6f3;cursor:pointer}
+.ci:last-child{border-bottom:none;padding-bottom:0}
+.ci input{width:17px;height:17px;accent-color:var(--red);flex-shrink:0;margin-top:2px;cursor:pointer}
+.ci label{font-size:13px;color:#333;line-height:1.5;cursor:pointer}
+.mbody{padding:14px}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Soul Ties</span></div>
+
+  <div class="body">
+    <div class="ph">
+      <a class="bk" href="index.html">‹</a>
+      <div>
+        <div class="ph-t">Breaking Soul Ties</div>
+        <div class="ph-s">Severing spiritual connections</div>
+      </div>
+    </div>
+
+    <div class="mod-hero">
+      <div class="mh-step">Deliverance · Spiritual Bondage</div>
+      <div class="mh-t">Cut Off Unholy Ties</div>
+      <div class="mh-s">Soul ties are spiritual connections that bind you to others. Not all are healthy. Some open doors to demonic influence.</div>
+    </div>
+
+    <div class="mbody">
+      <div class="card">
+        <div class="card-label">⚠️ What Are Soul Ties?</div>
+        <p style="font-size:13px;color:#333;line-height:1.7">
+          A soul tie is a spiritual bond between two people. They form through:
+        </p>
+        <ul style="margin-left:20px;margin-top:10px;font-size:12px;line-height:1.8">
+          <li><b>Sexual relations</b> — "the two shall become one flesh" (1 Cor 6:16)</li>
+          <li><b>Deep emotional connection</b> — shared trauma, dependency</li>
+          <li><b>Spiritual alignment</b> — agreement with someone's beliefs or practices</li>
+          <li><b>Demonic agreement</b> — unholy vows, curses, false covenants</li>
+        </ul>
+        <p style="margin-top:12px;font-size:12px;color:var(--red-mid)">
+          <b>Healthy soul ties exist:</b> Marriage, family, mentors, healthy friendships. <br><b>Unhealthy ties must be broken:</b> Fornication, abuse, occult practices, false agreements.
+        </p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn on" onclick="switchTab(event, 'sexual')">Sexual Ties</button>
+        <button class="tab-btn" onclick="switchTab(event, 'emotional')">Emotional</button>
+        <button class="tab-btn" onclick="switchTab(event, 'spiritual')">Spiritual</button>
+        <button class="tab-btn" onclick="switchTab(event, 'demonic')">Demonic</button>
+      </div>
+
+      <div class="tab-content on" id="sexual">
+        <div class="soul-tie-type">
+          <div class="st-title">🔥 Sexual Soul Ties</div>
+          <div class="st-desc">
+            When you join your body with someone sexually outside of marriage, you create a "one flesh" bond. This includes:
+            <ul style="margin-left:20px;margin-top:8px;font-size:12px">
+              <li>Fornication (sex before/outside marriage)</li>
+              <li>Pornography (joining your body to an image)</li>
+              <li>Same-sex relations (unholy covenant)</li>
+              <li>Masturbation while imagining someone</li>
+            </ul>
+            <p style="margin-top:8px;font-size:11px;color:var(--red-mid)">
+              <b>Scripture:</b> "Do you not know that he who unites himself with a prostitute is one with her in body?" (1 Cor 6:16)
+            </p>
+          </div>
+        </div>
+        
+        <div class="info">
+          <b>Effects:</b> Ongoing emotional connection to that person, intrusive thoughts, inability to forget them, spiritual stronghold in your mind and emotions, demonic access.
+        </div>
+
+        <div class="decl">
+          <div class="dl-l">Sexual Tie Breaking Declaration</div>
+          <div class="dl-t">
+            "In the name of Jesus Christ, I sever and break every sexual soul tie with [person's name]. I declare that my body, my sexuality, and my emotions are not joined to them anymore. I reclaim my body as a temple of the Holy Spirit. I am no longer one flesh with them. I close the door I opened through sexual sin. By the blood of Jesus, all demonic claims through this tie are cancelled. I am free."
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="emotional">
+        <div class="soul-tie-type">
+          <div class="st-title">💔 Emotional Soul Ties</div>
+          <div class="st-desc">
+            Unhealthy emotional bonds that create dependency, usually involving:
+            <ul style="margin-left:20px;margin-top:8px;font-size:12px">
+              <li>Obsessive thinking about someone</li>
+              <li>Emotional dependency or co-dependency</li>
+              <li>Shared trauma bonding</li>
+              <li>Idolizing another person</li>
+              <li>Fear of abandonment</li>
+            </ul>
+            <p style="margin-top:8px;font-size:11px;color:var(--red-mid)">
+              These can form even without sexual involvement and open doors to manipulation and control.
+            </p>
+          </div>
+        </div>
+
+        <div class="info">
+          <b>Signs You Have Emotional Ties:</b> Thinking about them constantly, unable to move on, your mood depends on their mood, you'll compromise your values for them, you can't make decisions without their input.
+        </div>
+
+        <div class="decl">
+          <div class="dl-l">Emotional Tie Breaking Declaration</div>
+          <div class="dl-t">
+            "I break the emotional soul tie with [person/people]. I renounce my unhealthy dependency on them. I take back my emotions from them. I am whole in Christ alone, not in any person. I sever the emotional cord that binds me to their moods, their approval, or their presence. I declare my emotional health belongs to God."
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="spiritual">
+        <div class="soul-tie-type">
+          <div class="st-title">🙏 Spiritual Soul Ties</div>
+          <div class="st-desc">
+            Agreements with someone's spiritual beliefs or practices:
+            <ul style="margin-left:20px;margin-top:8px;font-size:12px">
+              <li>Occult practices or New Age teachings</li>
+              <li>False religions or cults</li>
+              <li>Demonic music, literature, or media</li>
+              <li>Agreements with false prophets</li>
+              <li>Involvement in witchcraft or sorcery</li>
+            </ul>
+            <p style="margin-top:8px;font-size:11px;color:var(--red-mid)">
+              These ties open specific demonic doors and give the enemy legal access to your life.
+            </p>
+          </div>
+        </div>
+
+        <div class="info">
+          <b>⚡ Critical:</b> If you've been involved in occult practices, you must specifically renounce them and break these ties, or demons retain legal ground.
+        </div>
+
+        <div class="decl">
+          <div class="dl-l">Spiritual Tie Breaking Declaration</div>
+          <div class="dl-t">
+            "I renounce and break every spiritual tie formed through [occultic practice/false belief/demonic source]. I renounce the lies I believed. I break agreement with all demonic forces attached to this practice. I declare my allegiance is to Jesus Christ alone. I belong to Him. All demonic legal ground through this tie is cancelled by His blood."
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="demonic">
+        <div class="soul-tie-type">
+          <div class="st-title">👹 Demonic Soul Ties</div>
+          <div class="st-desc">
+            Direct demonic covenants formed through:
+            <ul style="margin-left:20px;margin-top:8px;font-size:12px">
+              <li>Explicit vows made to the enemy</li>
+              <li>Participation in satanic rituals</li>
+              <li>Curses spoken over you (generational or direct)</li>
+              <li>Trauma designed to create demonic entry</li>
+              <li>False covenants or soul transfers</li>
+            </ul>
+            <p style="margin-top:8px;font-size:11px;color:var(--red-mid)">
+              These are the most serious and must be aggressively broken through the name and blood of Jesus.
+            </p>
+          </div>
+        </div>
+
+        <div class="info">
+          <b>⚠️ Warfare Alert:</b> When breaking demonic ties, you may experience increased demonic activity briefly as demons lose their legal ground. This is normal. Stand firm in Christ's authority.
+        </div>
+
+        <div class="decl">
+          <div class="dl-l">Demonic Tie Breaking Declaration</div>
+          <div class="dl-t">
+            "In the name and by the blood of Jesus Christ, I break and sever every demonic soul tie. I renounce every vow, curse, agreement, or covenant made with demons. I take back all legal ground they claimed through these ties. I declare that the blood of Jesus Christ cleanses me completely. All demonic claims are cancelled. I am redeemed, restored, and set free. Demons have NO authority over me. I belong to Jesus Christ."
+          </div>
+        </div>
+
+        <div class="info" style="background:#f0ece6;border-color:#ddd;color:#333">
+          <b>If you were trafficked or abused:</b> These declarations are powerful, but consider working with a Christian deliverance minister. Some cases require additional spiritual authority. Reach out to your church.
+        </div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">30-Day Freedom Challenge</div>
+        <div class="pstep">
+          <div class="pnum">1</div>
+          <div class="ptext"><b>Days 1-5:</b> Make declarations daily (write them out)</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">2</div>
+          <div class="ptext"><b>Days 6-10:</b> Fast & pray for complete liberation</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">3</div>
+          <div class="pnum">3</div>
+          <div class="ptext"><b>Days 11-20:</b> Replace old thoughts (Philippians 4:8)</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">4</div>
+          <div class="ptext"><b>Days 21-30:</b> Rebuild healthy boundaries</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">📋 Freedom Checkpoint</div>
+        <div class="ci">
+          <input type="checkbox" id="c1">
+          <label for="c1">I have identified all soul ties that need breaking</label>
+        </div>
+        <div class="ci">
+          <input type="checkbox" id="c2">
+          <label for="c2">I have made specific declarations for each tie</label>
+        </div>
+        <div class="ci">
+          <input type="checkbox" id="c3">
+          <label for="c3">I commit to the 30-day freedom challenge</label>
+        </div>
+        <div class="ci">
+          <input type="checkbox" id="c4">
+          <label for="c4">I have confessed any occultic involvement and renounced it</label>
+        </div>
+      </div>
+
+      <button class="btn" onclick="markComplete('soulties')">Soul Ties Broken — +100 pts</button>
+      <a class="btn" href="index.html" style="background:transparent;color:var(--red);border:2px solid var(--red)">Save & return</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(e, tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  
+  // Show selected tab
+  document.getElementById(tabName).classList.add('on');
+  e.target.classList.add('on');
+}
+
+// Save checkboxes
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const checks = {};
+    document.querySelectorAll('input[type=checkbox]').forEach(c => {
+      checks[c.id] = c.checked;
+    });
+    localStorage.setItem('soul-ties-checks', JSON.stringify(checks));
+  });
+  
+  // Load saved
+  const saved = JSON.parse(localStorage.getItem('soul-ties-checks') || '{}');
+  if (saved[cb.id]) cb.checked = true;
+});
+</script>
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

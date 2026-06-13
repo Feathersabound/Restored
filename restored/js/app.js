@@ -2,7 +2,18 @@
  * App.js - Main application initialization for Restored in Him
  * Loads modular functionality from storage.js and ui.js
  * Handles page lifecycle and crisis resources
+ * FRAMEWORK: Derek Prince + Neil Anderson + Christian Deliverance Ministry
  */
+
+// Age verification gate - redirect to age-gate if not verified
+window.addEventListener('load', () => {
+  const verified = localStorage.getItem('ageVerified');
+  const currentPage = window.location.pathname;
+  
+  if (!verified && !currentPage.includes('age-gate')) {
+    window.location.href = 'age-gate.html';
+  }
+});
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {

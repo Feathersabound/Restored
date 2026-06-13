@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#B91C1C">
+<meta name="description" content="Freedom in Christ - Foundation for biblical deliverance and healing">
+<title>Freedom in Christ Foundation — Restored in Him</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B91C1C;
+  --red-dark:#7F1D1D;
+  --red-light:#FEF2F2;
+  --red-mid:#991B1B;
+  --black:#111;
+  --grey-1:#f9f7f4;
+  --grey-2:#f0ece6;
+  --grey-3:#e8e4de;
+  --grey-4:#999;
+  --grey-5:#555;
+  --border:#ede9e3;
+  --gold:#B45309;
+  --gold-light:#FFFBEB;
+}
+body{background:var(--grey-3);display:flex;justify-content:center;padding:20px 0;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;min-height:100vh}
+.phone{width:390px;background:var(--grey-1);border-radius:44px;overflow:hidden;position:relative;min-height:844px;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.sb{background:#fff;padding:14px 26px 6px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--black);flex-shrink:0}
+.body{flex:1;overflow-y:auto;padding-bottom:80px}
+.body::-webkit-scrollbar{display:none}
+.ph{background:#fff;padding:14px 16px 12px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--border);flex-shrink:0}
+.bk{width:32px;height:32px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:18px;color:var(--grey-5);text-decoration:none;flex-shrink:0}
+.ph-t{font-size:15px;font-weight:800;color:var(--black)}
+.ph-s{font-size:11px;color:var(--grey-4)}
+.mod-hero{background:var(--red);padding:22px 20px 26px;position:relative;overflow:hidden;flex-shrink:0}
+.mod-hero::before{content:"✝";position:absolute;right:-10px;top:-20px;font-size:140px;color:rgba(255,255,255,0.05);font-family:serif}
+.mh-step{font-size:11px;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:6px}
+.mh-t{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.mh-s{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+.card{background:#fff;border-radius:16px;padding:14px 15px;margin-bottom:11px;border:1px solid var(--border)}
+.card-label{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.whw{background:#fff;border-radius:14px;margin-bottom:12px;border:1px solid var(--border);overflow:hidden}
+.wtabs{display:flex;border-bottom:1px solid var(--border)}
+.wtab{flex:1;padding:11px 6px;font-size:13px;font-weight:800;text-align:center;cursor:pointer;color:var(--grey-4);border:none;background:none;font-family:inherit;transition:all 0.15s}
+.wtab.on{color:var(--red);border-bottom:2px solid var(--red);background:#fdfafa}
+.wcont{padding:14px 15px;font-size:13px;color:#333;line-height:1.7;display:none}
+.wcont.on{display:block}
+.wcont b{color:var(--black);font-weight:800}
+.wcont em{color:var(--red);font-style:normal;font-weight:700}
+.sv{background:var(--red-light);border-left:3px solid var(--red);padding:8px 12px;border-radius:0 8px 8px 0;font-size:12px;color:var(--red-mid);font-style:italic;margin:10px 0;line-height:1.55}
+.decl{background:var(--red);border-radius:14px;padding:18px;margin-bottom:12px}
+.dl-l{font-size:10px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.dl-t{font-size:15px;color:#fff;line-height:1.75;font-style:italic;margin-bottom:12px}
+.dl-v{display:flex;align-items:flex-start;gap:7px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5}
+.prac{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--border)}
+.prac-t{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:11px}
+.pstep{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f8f6f3}
+.pstep:last-child{border-bottom:none;padding-bottom:0}
+.pnum{width:22px;height:22px;background:var(--red-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--red);flex-shrink:0;margin-top:1px}
+.ptext{font-size:13px;color:#333;line-height:1.55}
+.ptext b{color:var(--black)}
+.info{background:var(--gold-light);border:1px solid #FDE68A;border-radius:12px;padding:11px 13px;font-size:12px;color:#78350F;margin-bottom:12px;line-height:1.55}
+.btn{width:100%;padding:15px;background:var(--red);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:9px;font-family:inherit;letter-spacing:-0.2px;display:block;text-align:center;text-decoration:none}
+.btn:active{opacity:0.85}
+.mbody{padding:14px}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span>Foundation</span></div>
+
+  <div class="body">
+    <div class="ph">
+      <a class="bk" href="index.html">‹</a>
+      <div>
+        <div class="ph-t">Freedom in Christ</div>
+        <div class="ph-s">Foundation Module — Neil Anderson Framework</div>
+      </div>
+    </div>
+
+    <div class="mod-hero">
+      <div class="mh-step">Foundation · Core Identity</div>
+      <div class="mh-t">You Are Free in Christ</div>
+      <div class="mh-s">"It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery." — Galatians 5:1</div>
+    </div>
+
+    <div class="mbody">
+      <div class="card-label">🔑 What You Must Know</div>
+      <p style="font-size:13px;color:#333;line-height:1.7;margin-bottom:12px">
+        You are <b>not defined by your past</b>. You are <b>not defeated by your struggles</b>. You are <b>not abandoned by God</b>. Your identity is <b>completely rooted in Christ</b>, not in your sexuality, your wounds, or your failures.
+      </p>
+
+      <div class="whw">
+        <div class="wtabs">
+          <button class="wtab on" onclick="whw(this, 'who1')">Who You Are</button>
+          <button class="wtab" onclick="whw(this, 'what1')">What's True</button>
+          <button class="wtab" onclick="whw(this, 'how1')">What to Do</button>
+        </div>
+        <div class="wcont on" id="who1">
+          <b>Your Identity in Christ (36 Statements):</b>
+          <p style="margin-top:10px">In Christ, you are...</p>
+          <ul style="margin-left:20px;font-size:12px;line-height:1.8">
+            <li><b>Accepted:</b> You are God's child (John 1:12)</li>
+            <li><b>Chosen:</b> You are chosen and blameless (Ephesians 1:4)</li>
+            <li><b>Redeemed:</b> Your sins are forgiven (Ephesians 1:7)</li>
+            <li><b>Righteous:</b> You are the righteousness of God (2 Cor 5:21)</li>
+            <li><b>Holy:</b> You are sanctified and set apart (1 Cor 1:2)</li>
+            <li><b>Sealed:</b> The Holy Spirit marks you as His (Ephesians 1:13)</li>
+            <li><b>Alive:</b> Alive to God and dead to sin (Romans 6:11)</li>
+            <li><b>Complete:</b> You lack nothing in Christ (Colossians 2:10)</li>
+          </ul>
+          <p style="margin-top:12px;font-size:12px;color:var(--red-mid);font-style:italic">
+            These are not feelings. These are <b>legal facts</b> based on Christ's work. Your emotions will catch up as you believe them.
+          </p>
+        </div>
+        <div class="wcont" id="what1">
+          <b>The Lies You've Believed:</b>
+          <p style="margin-top:10px;color:#333;line-height:1.7">The enemy has deceived you with lies. Satan is "the father of lies" (John 8:44) and specializes in:</p>
+          <ul style="margin-left:20px;margin-top:10px;font-size:12px;line-height:1.8">
+            <li>❌ "You are your past"</li>
+            <li>❌ "God can't forgive what you've done"</li>
+            <li>❌ "You are too dirty for God"</li>
+            <li>❌ "Your desires define you"</li>
+            <li>❌ "You are unlovable"</li>
+            <li>❌ "This will never change"</li>
+            <li>❌ "God abandoned you"</li>
+          </ul>
+          <p style="margin-top:12px"><b>These are lies.</b> They contradict Scripture. Your job is to <b>reject them and replace them with truth</b>.</p>
+        </div>
+        <div class="wcont" id="how1">
+          <b>The Process (Freedom in Christ Steps):</b>
+          <div class="prac" style="border:none;padding:0">
+            <div class="pstep">
+              <div class="pnum">1</div>
+              <div class="ptext"><b>Renounce</b> lies you've believed about yourself</div>
+            </div>
+            <div class="pstep">
+              <div class="pnum">2</div>
+              <div class="ptext"><b>Renounce</b> false agreements with the enemy</div>
+            </div>
+            <div class="pstep">
+              <div class="pnum">3</div>
+              <div class="ptext"><b>Declare</b> the truth of your identity in Christ</div>
+            </div>
+            <div class="pstep">
+              <div class="pnum">4</div>
+              <div class="ptext"><b>Choose</b> to believe what God says over how you feel</div>
+            </div>
+            <div class="pstep">
+              <div class="pnum">5</div>
+              <div class="ptext"><b>Renew</b> your mind by meditating on Scripture daily</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declaration of Truth</div>
+        <div class="dl-t">
+          "I am free from condemnation. I am accepted in Christ. My past does not define me. My sins are forgiven and forgotten. I am righteous through Jesus. I reject the lies of the enemy. I declare myself alive to God and dead to sin. I am not what happened to me. I am who Christ says I am."
+        </div>
+        <div class="dl-v">
+          📖 <span><b>Foundation Scripture:</b> Romans 8:1 — "There is now no condemnation for those who are in Christ Jesus."</span>
+        </div>
+      </div>
+
+      <div class="info">
+        <b>⚡ Key Understanding:</b> You don't need to <i>feel</i> free to <i>be</i> free. Freedom is a legal position based on Christ's work, not a feeling. Your emotions will follow as you renew your mind with truth.
+      </div>
+
+      <div class="card">
+        <div class="card-label">📝 Exercise</div>
+        <p style="font-size:13px;color:#333;line-height:1.7">
+          <b>Identify the lies:</b> What has the enemy told you about your identity? Write down 3-5 lies you've believed. Now, for each one, find a Scripture that contradicts it. <b>Declare the truth out loud.</b> This breaks the power of the lie.
+        </p>
+      </div>
+
+      <button class="btn" onclick="markComplete('foundation')">I understand my identity in Christ — +100 pts</button>
+      <a class="btn" href="index.html" style="background:transparent;color:var(--red);border:2px solid var(--red)">Save & return</a>
+    </div>
+  </div>
+
+  <div style="position:absolute;bottom:76px;left:0;right:0;padding:14px;background:#fff;border-top:1px solid var(--border);font-size:11px;color:var(--grey-4);text-align:center">
+    <b>Next:</b> Complete "Legal Ground" module to close demonic doors
+  </div>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

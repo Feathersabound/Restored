@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restored in Him - Age Verification</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: linear-gradient(135deg, #B91C1C 0%, #7F1D1D 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  padding: 20px;
+}
+.container {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  text-align: center;
+}
+.logo {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 28px;
+  color: #111;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+.content-warning {
+  background: #FEF2F2;
+  border-left: 4px solid #B91C1C;
+  padding: 16px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.6;
+}
+.warning-title {
+  font-weight: 800;
+  color: #B91C1C;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+button {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: #B91C1C;
+  color: white;
+}
+.btn-primary:hover {
+  background: #991B1B;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(185, 28, 28, 0.3);
+}
+.btn-secondary {
+  background: transparent;
+  color: #B91C1C;
+  border: 2px solid #B91C1C;
+}
+.btn-secondary:hover {
+  background: #FEF2F2;
+}
+.teen-section {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+}
+.teen-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #B91C1C;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.teen-note {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  accent-color: #B91C1C;
+  cursor: pointer;
+}
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  text-align: left;
+  font-size: 13px;
+}
+.checkbox-label {
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">❤️</div>
+  <h1>Restored in Him</h1>
+  <p class="subtitle">Sexual healing, wholeness & intimacy with God through the Holy Spirit</p>
+  
+  <div class="content-warning">
+    <div class="warning-title">⚠️ Important Content Notice</div>
+    <p>This app addresses sexual trauma, spiritual bondage, and demonic deliverance. Content includes:</p>
+    <ul style="margin-top: 8px; margin-left: 20px; font-size: 12px;">
+      <li>Sexual abuse and trauma recovery</li>
+      <li>Spiritual warfare and demonic influence</li>
+      <li>Deliverance ministry teachings</li>
+      <li>Personal identity and brokenness</li>
+    </ul>
+    <p style="margin-top: 8px;"><strong>This is intended for adults seeking biblical healing.</strong></p>
+  </div>
+
+  <div class="buttons">
+    <button class="btn-primary" onclick="confirmAdult()">I am 18+ and wish to proceed</button>
+    <button class="btn-secondary" onclick="goBack()">I am under 18 / Leave</button>
+  </div>
+
+  <div class="teen-section">
+    <div class="teen-title">👨‍👩‍👧 For Parents/Guardians</div>
+    <p class="teen-note">Teens (16-17) may access with parental guidance and approval. This app contains biblical teaching on serious spiritual topics. Parents should preview content first.</p>
+    
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="parentConsent" onchange="toggleTeenAccess()">
+      <label for="parentConsent" class="checkbox-label">I am a parent/guardian and approve teen (16-17) access with my supervision</label>
+    </div>
+    
+    <button class="btn-primary" id="teenBtn" style="display:none;" onclick="allowTeenAccess()">Allow Teen Access</button>
+  </div>
+</div>
+
+<script>
+// Check if already verified
+window.addEventListener('load', () => {
+  const verified = localStorage.getItem('ageVerified');
+  if (verified === 'adult' || verified === 'teen') {
+    window.location.href = 'index.html';
+  }
+});
+
+function confirmAdult() {
+  localStorage.setItem('ageVerified', 'adult');
+  localStorage.setItem('verifiedDate', new Date().toISOString());
+  window.location.href = 'index.html';
+}
+
+function toggleTeenAccess() {
+  const checkbox = document.getElementById('parentConsent');
+  const teenBtn = document.getElementById('teenBtn');
+  teenBtn.style.display = checkbox.checked ? 'block' : 'none';
+}
+
+function allowTeenAccess() {
+  localStorage.setItem('ageVerified', 'teen');
+  localStorage.setItem('teenAccess', 'true');
+  localStorage.setItem('verifiedDate', new Date().toISOString());
+  window.location.href = 'index.html';
+}
+
+function goBack() {
+  window.location.href = 'https://www.google.com';
+}
+</script>
+</body>
+</html>
