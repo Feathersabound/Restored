@@ -1,198 +1,120 @@
-// Navigation active state
-function setNav(page) {
-  document.querySelectorAll('.nt').forEach(n => n.classList.remove('on'));
-  const el = document.querySelector(`.nt[data-page="${page}"]`);
-  if (el) el.classList.add('on');
-}
+/**
+ * App.js - Main application initialization for Restored in Him
+ * Loads modular functionality from storage.js and ui.js
+ * Handles page lifecycle and crisis resources
+ */
 
-// Tier selector
-function setTier(btn) {
-  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const tier = btn.textContent.trim().toLowerCase();
-  localStorage.setItem('tier', tier);
-}
-
-// Load saved tier
-function loadTier() {
-  const saved = localStorage.getItem('tier') || 'gentle';
-  document.querySelectorAll('.tp').forEach(b => {
-    if (b.textContent.trim().toLowerCase() === saved) b.classList.add('on');
-    else b.classList.remove('on');
+// Register service worker for PWA functionality
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/js/sw.js').catch(err => {
+    console.log('Service Worker registration failed (non-critical):', err);
   });
 }
 
-// What/Why/How tabs
-function whw(btn, id) {
-  btn.closest('.whw').querySelectorAll('.wtab').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  btn.closest('.whw').querySelectorAll('.wcont').forEach(c => c.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  // Update visit tracking and streak
+  updateStreak();
+  
+  // Render all UI elements
+  renderStreak();
+  renderProgress();
+  updateProgressDots();
+  loadTierUI();
+  loadChecklist();
+  loadVerse();
+  applyContrast();
+  
+  // Set active navigation
+  const currentPage = document.body.getAttribute('data-page') || 'home';
+  setNav(currentPage);
+  
+  // Make checkboxes save automatically
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', saveChecklist);
+  });
+  
+  // Initialize data management UI
+  setupDataManagement();
+  
+  // Initialize crisis resources display
+  displayCrisisResources();
+  
+  console.log('✓ Restored in Him Initialized');
+});
+
+// Setup data management buttons
+function setupDataManagement() {
+  const settingsContainer = document.querySelector('.ab, [data-settings], .mbody');
+  if (!settingsContainer || document.getElementById('data-mgmt')) return;
+  
+  const div = document.createElement('div');
+  div.id = 'data-mgmt';
+  div.style.padding = '14px';
+  div.style.display = 'flex';
+  div.style.gap = '8px';
+  div.style.flexWrap = 'wrap';
+  div.innerHTML = `
+    <button class="btn gh" onclick="downloadExport()" title="Download your progress as JSON" style="flex:1;min-width:120px">💾 Export</button>
+    <button class="btn gh" onclick="triggerImport()" title="Restore progress from file" style="flex:1;min-width:120px">📤 Import</button>
+    <button class="btn gh" onclick="toggleContrast()" title="Increase contrast" style="flex:1;min-width:120px">👁️ Contrast</button>
+  `;
+  settingsContainer.appendChild(div);
 }
 
-// Crisis situation switcher
-function setSit(btn, id) {
-  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  document.querySelectorAll('.sit-content').forEach(c => c.classList.remove('on'));
-  const el = document.getElementById(id);
-  if (el) el.classList.add('on');
-}
-
-// Gamification - streak
-function getStreak() {
-  return parseInt(localStorage.getItem('streak') || '0');
-}
-
-function updateStreak() {
-  const last = localStorage.getItem('lastVisit');
-  const today = new Date().toDateString();
-  if (last === today) return;
-  const yesterday = new Date(Date.now() - 86400000).toDateString();
-  let streak = getStreak();
-  if (last === yesterday) streak++;
-  else streak = 1;
-  localStorage.setItem('streak', streak);
-  localStorage.setItem('lastVisit', today);
-}
-
-function renderStreak() {
-  const streak = getStreak();
-  const el = document.getElementById('streak-num');
-  if (el) el.textContent = streak > 0 ? streak + ' day streak 🔥' : 'Start your streak today';
+// Display crisis resources
+function displayCrisisResources() {
+  const crisisSection = document.querySelector('[data-section="crisis"]');
+  if (!crisisSection) return;
+  
+  const resourcesHTML = `
+    <div style="padding:14px 14px 70px;">
+      <div class="card" onclick="window.location.href='tel:988'" style="cursor:pointer;margin-bottom:12px;">
+        <div class="card-label">🚨 Immediate Crisis</div>
+        <div style="font-size:20px;font-weight:800;color:var(--red)">Call 988</div>
+        <div style="font-size:12px;color:var(--grey-4);margin-top:6px">Suicide & Crisis Lifeline (24/7 Free)</div>
+      </div>
+      <div class="card" onclick="window.location.href='https://www.rainn.org'" style="cursor:pointer;margin-bottom:12px;">
+        <div class="card-label">⚠️ Sexual Assault</div>
+        <div style="font-size:18px;font-weight:800;color:var(--red)">1-800-656-4673</div>
+        <div style="font-size:12px;color:var(--grey-4);margin-top:6px">RAINN • Confidential & Free</div>
+      </div>
+      <div class="card" onclick="window.location.href='sms:741741?body=HOME'" style="cursor:pointer;margin-bottom:12px;">
+        <div class="card-label">💬 Text Support</div>
+        <div style="font-size:18px;font-weight:800;color:var(--red)">Text HOME to 741741</div>
+        <div style="font-size:12px;color:var(--grey-4);margin-top:6px">Crisis Text Line • Free & Confidential</div>
+      </div>
+      <div class="card" style="background:var(--gold-light);border-color:#FDE68A;">
+        <div class="card-label" style="color:var(--gold)">ℹ️ You Are Not Alone</div>
+        <div style="font-size:13px;color:#78350F;line-height:1.6">
+          What you're experiencing is real. Professional help is available. God is with you. Reach out today.
+        </div>
+      </div>
+    </div>
+  `;
+  crisisSection.innerHTML = resourcesHTML;
 }
 
 // Module completion
-function getCompleted() {
-  return JSON.parse(localStorage.getItem('completed') || '[]');
-}
-
-function markComplete(module) {
-  const list = getCompleted();
-  if (!list.includes(module)) {
-    list.push(module);
-    localStorage.setItem('completed', JSON.stringify(list));
-  }
-  // Award points
-  let pts = parseInt(localStorage.getItem('points') || '0');
-  pts += 100;
-  localStorage.setItem('points', pts);
+function completeModule(moduleId) {
+  markComplete(moduleId);
   showCelebration();
-}
-
-function showCelebration() {
-  const el = document.getElementById('celebration');
-  if (!el) return;
-  el.style.display = 'flex';
-  setTimeout(() => { el.style.display = 'none'; }, 3000);
-}
-
-function getPoints() {
-  return parseInt(localStorage.getItem('points') || '0');
-}
-
-function renderProgress() {
-  const completed = getCompleted();
-  const total = 12;
-  const pct = Math.round((completed.length / total) * 100);
-
-  // Progress bar
-  document.querySelectorAll('#progress-fill').forEach(el => el.style.width = pct + '%');
-  document.querySelectorAll('#progress-pct').forEach(el => el.textContent = pct + '%');
-
-  // Home page progress dots
-  const dots = document.querySelectorAll('.pdot');
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('d', i < completed.length);
-  });
-
-  // Module cards - show completion tick
-  document.querySelectorAll('[data-module]').forEach(mod => {
-    const id = mod.getAttribute('data-module');
-    const fill = mod.querySelector('.mod-prog-fill');
-    const chev = mod.querySelector('.mod-chev');
-    if (completed.includes(id)) {
-      if (fill) fill.style.width = '100%';
-      if (chev) chev.textContent = '✓';
-      mod.style.opacity = '0.75';
-    }
-  });
-
-  // Points display
-  document.querySelectorAll('#points-display').forEach(el => el.textContent = getPoints() + ' pts');
-
-  // Badge counts on journey page
-  const badgeCount = document.getElementById('badge-count');
-  if (badgeCount) badgeCount.textContent = '📍 ' + completed.length + ' modules complete';
-  const badgePts = document.getElementById('badge-pts');
-  if (badgePts) badgePts.textContent = '⭐ ' + getPoints() + ' pts';
-
-  // Home page specific badges
-  const homeStreak = document.getElementById('home-streak-badge');
-  if (homeStreak) homeStreak.textContent = '🔥 ' + getStreak() + ' day streak';
-  const homePts = document.getElementById('home-pts-badge');
-  if (homePts) homePts.textContent = '⭐ ' + getPoints() + ' pts';
-  const homeDone = document.getElementById('home-done-badge');
-  if (homeDone) homeDone.textContent = '✅ ' + completed.length + ' modules done';
-}
-
-// Scripture memory
-let currentVerse = 0;
-const verses = [
-  { ref: 'John 8:36', text: 'If the Son sets you free, you will be free indeed.' },
-  { ref: 'Romans 8:1', text: 'There is now no condemnation for those who are in Christ Jesus.' },
-  { ref: 'James 4:7', text: 'Submit to God, resist the devil, and he will flee from you.' },
-  { ref: '1 Corinthians 6:18', text: 'Flee from sexual immorality. Every other sin a person commits is outside the body, but the sexually immoral person sins against his own body.' },
-  { ref: 'Romans 12:2', text: 'Do not conform to the pattern of this world, but be transformed by the renewing of your mind.' },
-  { ref: 'Psalm 119:9', text: 'How can a young person keep their way pure? By living according to your word.' },
-  { ref: '2 Corinthians 10:5', text: 'We take captive every thought to make it obedient to Christ.' },
-  { ref: 'Philippians 4:8', text: 'Whatever is true, whatever is noble, whatever is right, whatever is pure — think about such things.' },
-  { ref: 'Galatians 2:20', text: 'I have been crucified with Christ. I no longer live, but Christ lives in me.' },
-  { ref: 'Isaiah 54:17', text: 'No weapon formed against you shall prosper.' },
-];
-
-function loadVerse() {
-  const v = verses[currentVerse % verses.length];
-  const ref = document.getElementById('mem-ref');
-  const text = document.getElementById('mem-text');
-  if (ref) ref.textContent = v.ref;
-  if (text) text.textContent = v.text;
-}
-
-function nextVerse(knew) {
-  if (knew) {
-    let pts = getPoints();
-    pts += 10;
-    localStorage.setItem('points', pts);
-    renderProgress();
-  }
-  currentVerse++;
-  loadVerse();
-}
-
-// Checklist saving
-function saveChecklist() {
-  const checks = {};
-  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
-    checks[cb.id] = cb.checked;
-  });
-  localStorage.setItem('checklist', JSON.stringify(checks));
-}
-
-function loadChecklist() {
-  const saved = JSON.parse(localStorage.getItem('checklist') || '{}');
-  Object.entries(saved).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.checked = val;
-  });
-}
-
-// Init on page load
-document.addEventListener('DOMContentLoaded', () => {
-  updateStreak();
-  renderStreak();
   renderProgress();
-  loadTier();
-  loadChecklist();
-  loadVerse();
+}
+
+// Save before leaving
+window.addEventListener('beforeunload', () => {
+  saveChecklist();
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (e.altKey && e.key === 'e') {
+    e.preventDefault();
+    downloadExport();
+  }
+  if (e.altKey && e.key === 'i') {
+    e.preventDefault();
+    triggerImport();
+  }
 });
