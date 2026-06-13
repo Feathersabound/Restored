@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>My Pathway — Restored in Him</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B91C1C;
+  --red-dark:#7F1D1D;
+  --red-light:#FEF2F2;
+  --red-mid:#991B1B;
+  --black:#111;
+  --grey-1:#f9f7f4;
+  --grey-2:#f0ece6;
+  --grey-3:#e8e4de;
+  --grey-4:#999;
+  --grey-5:#555;
+  --border:#ede9e3;
+  --gold:#B45309;
+  --gold-light:#FFFBEB;
+}
+body{
+  background:var(--grey-3);
+  display:flex;
+  justify-content:center;
+  padding:20px 0;
+  font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+  min-height:100vh;
+}
+.phone{
+  width:390px;
+  background:var(--grey-1);
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  min-height:844px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+.sb{
+  background:#fff;
+  padding:14px 26px 6px;
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  color:var(--black);
+  flex-shrink:0;
+}
+.body{
+  flex:1;
+  overflow-y:auto;
+  padding-bottom:80px;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* BOTTOM NAV */
+.nav{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:76px;
+  background:#fff;
+  border-top:1px solid var(--border);
+  display:flex;
+  padding:0 4px 12px;
+  z-index:100;
+}
+.nt{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  cursor:pointer;
+  border:none;
+  background:none;
+  padding:8px 4px 0;
+  text-decoration:none;
+}
+.ni{font-size:22px;color:#c0b8b0}
+.nl{font-size:10px;color:#c0b8b0;font-weight:600}
+.nt.on .ni,.nt.on .nl{color:var(--red)}
+
+/* PAGE HEADER */
+.ph{
+  background:#fff;
+  padding:14px 16px 12px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.bk{
+  width:32px;height:32px;
+  background:#f5f5f5;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:none;
+  font-size:18px;color:var(--grey-5);
+  text-decoration:none;
+  flex-shrink:0;
+}
+.ph-t{font-size:15px;font-weight:800;color:var(--black)}
+.ph-s{font-size:11px;color:var(--grey-4)}
+
+/* HERO BANDS */
+.mod-hero{
+  background:var(--red);
+  padding:22px 20px 26px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.mod-hero::before{
+  content:"✝";
+  position:absolute;right:-10px;top:-20px;
+  font-size:140px;
+  color:rgba(255,255,255,0.05);
+  font-family:serif;
+}
+.mh-step{font-size:11px;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:6px}
+.mh-t{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.mh-s{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+
+/* STEP INDICATOR */
+.steps{
+  display:flex;align-items:center;
+  padding:12px 16px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.st{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--grey-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--grey-4);
+  flex-shrink:0;
+}
+.st.d{background:var(--red);color:#fff}
+.st.nw{background:#fff;border:2px solid var(--red);color:var(--red)}
+.stl{flex:1;height:2px;background:var(--grey-2)}
+.stl.d{background:var(--red)}
+
+/* CARDS & GROUPS */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:14px 15px;
+  margin-bottom:11px;
+  border:1px solid var(--border);
+}
+.card-label{
+  font-size:10px;font-weight:800;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:1.1px;
+  margin-bottom:10px;
+}
+
+/* WHAT/WHY/HOW TABS */
+.whw{background:#fff;border-radius:14px;margin-bottom:12px;border:1px solid var(--border);overflow:hidden}
+.wtabs{display:flex;border-bottom:1px solid var(--border)}
+.wtab{
+  flex:1;padding:11px 6px;
+  font-size:13px;font-weight:800;
+  text-align:center;cursor:pointer;
+  color:var(--grey-4);
+  border:none;background:none;
+  font-family:inherit;
+  transition:all 0.15s;
+}
+.wtab.on{color:var(--red);border-bottom:2px solid var(--red);background:#fdfafa}
+.wcont{padding:14px 15px;font-size:13px;color:#333;line-height:1.7;display:none}
+.wcont.on{display:block}
+.wcont b{color:var(--black);font-weight:800}
+.wcont em{color:var(--red);font-style:normal;font-weight:700}
+.wcont .sv{
+  background:var(--red-light);
+  border-left:3px solid var(--red);
+  padding:8px 12px;
+  border-radius:0 8px 8px 0;
+  font-size:12px;
+  color:var(--red-mid);
+  font-style:italic;
+  margin:10px 0;
+  line-height:1.55;
+}
+
+/* DECLARATIONS */
+.decl{
+  background:var(--red);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:12px;
+}
+.dl-l{font-size:10px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.dl-t{font-size:15px;color:#fff;line-height:1.75;font-style:italic;margin-bottom:12px}
+.dl-v{
+  display:flex;align-items:flex-start;gap:7px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,0.15);
+  font-size:12px;color:rgba(255,255,255,0.65);
+  line-height:1.5;
+}
+
+/* PRACTICAL STEPS */
+.prac{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--border)}
+.prac-t{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:11px}
+.pstep{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f8f6f3}
+.pstep:last-child{border-bottom:none;padding-bottom:0}
+.pnum{
+  width:22px;height:22px;
+  background:var(--red-light);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--red);
+  flex-shrink:0;margin-top:1px;
+}
+.ptext{font-size:13px;color:#333;line-height:1.55}
+.ptext b{color:var(--black)}
+
+/* PRESENCE BOX */
+.pres{background:var(--black);border-radius:14px;padding:15px 16px;margin-bottom:12px}
+.pres-l{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:8px}
+.pres-t{font-size:13px;color:rgba(255,255,255,0.88);line-height:1.65}
+.pres-t b{color:#fff}
+
+/* INFO BOX */
+.info{
+  background:var(--gold-light);
+  border:1px solid #FDE68A;
+  border-radius:12px;
+  padding:11px 13px;
+  font-size:12px;color:#78350F;
+  margin-bottom:12px;
+  line-height:1.55;
+}
+
+/* CHECKLIST */
+.ci{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid #f8f6f3;cursor:pointer}
+.ci:last-child{border-bottom:none;padding-bottom:0}
+.ci input{width:17px;height:17px;accent-color:var(--red);flex-shrink:0;margin-top:2px;cursor:pointer}
+.ci label{font-size:13px;color:#333;line-height:1.5;cursor:pointer}
+
+/* BUTTONS */
+.btn{
+  width:100%;padding:15px;
+  background:var(--red);color:#fff;
+  border:none;border-radius:14px;
+  font-size:15px;font-weight:800;
+  cursor:pointer;margin-bottom:9px;
+  font-family:inherit;
+  letter-spacing:-0.2px;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+.btn:active{opacity:0.85}
+.btn.gh{background:transparent;color:var(--red);border:2px solid var(--red)}
+
+/* TIER SELECTOR */
+.tier{
+  background:#fff;border-radius:12px;
+  padding:11px 13px;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border);flex-wrap:wrap;
+}
+.tl{font-size:11px;color:var(--grey-4);flex-shrink:0}
+.tp{
+  font-size:12px;padding:5px 13px;
+  border-radius:100px;
+  border:1px solid #e0dbd4;
+  background:transparent;color:var(--grey-4);
+  cursor:pointer;font-family:inherit;
+}
+.tp.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* GAMIFICATION */
+.streak-bar{
+  background:#fff;border-radius:16px;
+  padding:14px 16px;margin-bottom:11px;
+  border:1px solid var(--border);
+}
+.streak-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.streak-t{font-size:13px;font-weight:800;color:var(--black)}
+.streak-num{font-size:22px;font-weight:800;color:var(--red)}
+.streak-days{display:flex;gap:5px;margin-bottom:8px}
+.sday{
+  flex:1;height:28px;border-radius:6px;
+  background:var(--grey-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--grey-4);
+}
+.sday.d{background:var(--red);color:#fff}
+.sday.t{background:var(--red-light);border:2px solid var(--red);color:var(--red)}
+.badges-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.badge{
+  background:var(--red-light);color:var(--red-mid);
+  font-size:11px;font-weight:800;
+  padding:5px 11px;border-radius:100px;
+}
+.badge.gold{background:var(--gold-light);color:var(--gold)}
+
+/* MODULE CARD LIST */
+.mod{
+  background:#fff;border-radius:14px;
+  padding:13px 14px;margin-bottom:9px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;gap:11px;
+  cursor:pointer;text-decoration:none;
+}
+.mod.hi{border-color:var(--red)}
+.mod:active{transform:scale(0.99)}
+.mod-ic{
+  width:38px;height:38px;border-radius:11px;
+  background:var(--red-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.mod-ic.lk{background:#f5f5f5;opacity:0.5}
+.mod-b{flex:1}
+.mod-t{font-size:13px;font-weight:700;color:var(--black);margin-bottom:2px}
+.mod-s{font-size:11px;color:var(--grey-4)}
+.mod-chev{font-size:16px;color:#ddd}
+.mod-prog{
+  height:3px;background:var(--grey-2);
+  border-radius:2px;margin-top:5px;overflow:hidden;
+}
+.mod-prog-fill{height:3px;background:var(--red);border-radius:2px}
+
+/* BODY PADDING */
+.mbody{padding:14px}
+.ab{padding:14px}
+
+/* SCRIPTURE MEMORY GAME */
+.mem-card{
+  background:var(--red);border-radius:16px;
+  padding:20px;margin-bottom:12px;
+  text-align:center;
+}
+.mem-ref{font-size:12px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.mem-text{font-size:16px;color:#fff;line-height:1.7;font-style:italic;margin-bottom:14px}
+.mem-btns{display:flex;gap:8px}
+.mem-btn{
+  flex:1;padding:12px;border-radius:12px;
+  border:none;font-size:13px;font-weight:800;
+  cursor:pointer;font-family:inherit;
+}
+.mem-btn.right{background:#fff;color:var(--red)}
+.mem-btn.wrong{background:rgba(255,255,255,0.15);color:#fff}
+
+/* CRISIS SITUATION CONTENT */
+.sit-content{display:none}
+.sit-content.on{display:block}
+</style>
+<style>
+.path-opt{background:#fff;border-radius:14px;padding:14px 15px;margin-bottom:11px;border:2px solid var(--border);cursor:pointer;transition:all 0.2s}
+.path-opt:hover,.path-opt.on{border-color:var(--red);background:var(--red-light)}
+.po-t{font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px}
+.po-s{font-size:13px;color:var(--grey-5);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span id="streak-num">●</span></div>
+  <div class="body">
+    <div class="ph">
+      <a class="bk" href="index.html">‹</a>
+      <div><div class="ph-t">My pathway</div><div class="ph-s">This shapes your personal journey</div></div>
+    </div>
+    <div style="padding:14px">
+      <div class="path-opt" id="p-single" onclick="choosePath('single')">
+        <div class="po-t">Single</div>
+        <div class="po-s">Healing, purity, and freedom from sexual and emotional bondage. Being single is an invitation to deeper intimacy with God — not a waiting room. Use this time for Him.</div>
+      </div>
+      <div class="path-opt" id="p-preparing" onclick="choosePath('preparing')">
+        <div class="po-t">Preparing to marry</div>
+        <div class="po-s">Resolve past wounds, understand each other's backgrounds, surrender expectations to God, and walk into marriage clean, healed, and ready for covenant.</div>
+      </div>
+      <div class="path-opt" id="p-married" onclick="choosePath('married')">
+        <div class="po-t">Married</div>
+        <div class="po-s">Deepen covenant intimacy, understand sexuality as God designed it, fight spiritual warfare together, and build a Christ-centred home where His presence rules.</div>
+      </div>
+      <div class="info">Married and preparing-to-marry content includes frank biblical teaching on sexuality, anatomy, and intimate relationships. Single users can request access — the responsibility before God is yours.</div>
+      <a class="btn" href="assess.html">Begin my assessment →</a>
+    </div>
+  </div>
+  <div class="nav">
+    <a class="nt" href="index.html"><span class="ni">🏠</span><span class="nl">Home</span></a>
+    <a class="nt" href="assess.html"><span class="ni">☑️</span><span class="nl">Assess</span></a>
+    <a class="nt" href="journey.html"><span class="ni">🗺️</span><span class="nl">Journey</span></a>
+    <a class="nt" href="crisis/index.html"><span class="ni">🛡️</span><span class="nl">Crisis</span></a>
+    <a class="nt on" href="pathway.html"><span class="ni">👤</span><span class="nl">Profile</span></a>
+  </div>
+</div>
+<script>// Navigation active state
+function setNav(page) {
+  document.querySelectorAll('.nt').forEach(n => n.classList.remove('on'));
+  const el = document.querySelector(`.nt[data-page="${page}"]`);
+  if (el) el.classList.add('on');
+}
+
+// Tier selector
+function setTier(btn) {
+  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const tier = btn.textContent.trim().toLowerCase();
+  localStorage.setItem('tier', tier);
+}
+
+// Load saved tier
+function loadTier() {
+  const saved = localStorage.getItem('tier') || 'gentle';
+  document.querySelectorAll('.tp').forEach(b => {
+    if (b.textContent.trim().toLowerCase() === saved) b.classList.add('on');
+    else b.classList.remove('on');
+  });
+}
+
+// What/Why/How tabs
+function whw(btn, id) {
+  btn.closest('.whw').querySelectorAll('.wtab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  btn.closest('.whw').querySelectorAll('.wcont').forEach(c => c.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+// Crisis situation switcher
+function setSit(btn, id) {
+  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.sit-content').forEach(c => c.classList.remove('on'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('on');
+}
+
+// Gamification - streak
+function getStreak() {
+  return parseInt(localStorage.getItem('streak') || '0');
+}
+
+function updateStreak() {
+  const last = localStorage.getItem('lastVisit');
+  const today = new Date().toDateString();
+  if (last === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  let streak = getStreak();
+  if (last === yesterday) streak++;
+  else streak = 1;
+  localStorage.setItem('streak', streak);
+  localStorage.setItem('lastVisit', today);
+}
+
+function renderStreak() {
+  const el = document.getElementById('streak-num');
+  if (el) el.textContent = getStreak() + ' day streak 🔥';
+}
+
+// Module completion
+function getCompleted() {
+  return JSON.parse(localStorage.getItem('completed') || '[]');
+}
+
+function markComplete(module) {
+  const list = getCompleted();
+  if (!list.includes(module)) {
+    list.push(module);
+    localStorage.setItem('completed', JSON.stringify(list));
+  }
+  // Award points
+  let pts = parseInt(localStorage.getItem('points') || '0');
+  pts += 100;
+  localStorage.setItem('points', pts);
+  showCelebration();
+}
+
+function showCelebration() {
+  const el = document.getElementById('celebration');
+  if (!el) return;
+  el.style.display = 'flex';
+  setTimeout(() => { el.style.display = 'none'; }, 3000);
+}
+
+function getPoints() {
+  return parseInt(localStorage.getItem('points') || '0');
+}
+
+function renderProgress() {
+  const completed = getCompleted();
+  const total = 12; // total modules
+  const pct = Math.round((completed.length / total) * 100);
+
+  const fill = document.getElementById('progress-fill');
+  const pctEl = document.getElementById('progress-pct');
+  if (fill) fill.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+
+  // Render module progress dots
+  document.querySelectorAll('.mod[data-module]').forEach(mod => {
+    const id = mod.getAttribute('data-module');
+    const prog = mod.querySelector('.mod-prog-fill');
+    if (prog && completed.includes(id)) prog.style.width = '100%';
+  });
+
+  // Points
+  const pts = document.getElementById('points-display');
+  if (pts) pts.textContent = getPoints() + ' pts';
+}
+
+// Scripture memory
+let currentVerse = 0;
+const verses = [
+  { ref: 'John 8:36', text: 'If the Son sets you free, you will be free indeed.' },
+  { ref: 'Romans 8:1', text: 'There is now no condemnation for those who are in Christ Jesus.' },
+  { ref: 'James 4:7', text: 'Submit to God, resist the devil, and he will flee from you.' },
+  { ref: '1 Corinthians 6:18', text: 'Flee from sexual immorality. Every other sin a person commits is outside the body, but the sexually immoral person sins against his own body.' },
+  { ref: 'Romans 12:2', text: 'Do not conform to the pattern of this world, but be transformed by the renewing of your mind.' },
+  { ref: 'Psalm 119:9', text: 'How can a young person keep their way pure? By living according to your word.' },
+  { ref: '2 Corinthians 10:5', text: 'We take captive every thought to make it obedient to Christ.' },
+  { ref: 'Philippians 4:8', text: 'Whatever is true, whatever is noble, whatever is right, whatever is pure — think about such things.' },
+  { ref: 'Galatians 2:20', text: 'I have been crucified with Christ. I no longer live, but Christ lives in me.' },
+  { ref: 'Isaiah 54:17', text: 'No weapon formed against you shall prosper.' },
+];
+
+function loadVerse() {
+  const v = verses[currentVerse % verses.length];
+  const ref = document.getElementById('mem-ref');
+  const text = document.getElementById('mem-text');
+  if (ref) ref.textContent = v.ref;
+  if (text) text.textContent = v.text;
+}
+
+function nextVerse(knew) {
+  if (knew) {
+    let pts = getPoints();
+    pts += 10;
+    localStorage.setItem('points', pts);
+    renderProgress();
+  }
+  currentVerse++;
+  loadVerse();
+}
+
+// Checklist saving
+function saveChecklist() {
+  const checks = {};
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    checks[cb.id] = cb.checked;
+  });
+  localStorage.setItem('checklist', JSON.stringify(checks));
+}
+
+function loadChecklist() {
+  const saved = JSON.parse(localStorage.getItem('checklist') || '{}');
+  Object.entries(saved).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.checked = val;
+  });
+}
+
+// Init on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateStreak();
+  renderStreak();
+  renderProgress();
+  loadTier();
+  loadChecklist();
+  loadVerse();
+});
+</script>
+<script>
+function choosePath(p) {
+  localStorage.setItem('pathway', p);
+  document.querySelectorAll('.path-opt').forEach(el => el.classList.remove('on'));
+  document.getElementById('p-' + p).classList.add('on');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('pathway');
+  if (saved) {
+    const el = document.getElementById('p-' + saved);
+    if (el) el.classList.add('on');
+  }
+});
+</script>
+</body>
+</html>

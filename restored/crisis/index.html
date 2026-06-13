@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Crisis — Restored in Him</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B91C1C;
+  --red-dark:#7F1D1D;
+  --red-light:#FEF2F2;
+  --red-mid:#991B1B;
+  --black:#111;
+  --grey-1:#f9f7f4;
+  --grey-2:#f0ece6;
+  --grey-3:#e8e4de;
+  --grey-4:#999;
+  --grey-5:#555;
+  --border:#ede9e3;
+  --gold:#B45309;
+  --gold-light:#FFFBEB;
+}
+body{
+  background:var(--grey-3);
+  display:flex;
+  justify-content:center;
+  padding:20px 0;
+  font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+  min-height:100vh;
+}
+.phone{
+  width:390px;
+  background:var(--grey-1);
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  min-height:844px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+.sb{
+  background:#fff;
+  padding:14px 26px 6px;
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+  color:var(--black);
+  flex-shrink:0;
+}
+.body{
+  flex:1;
+  overflow-y:auto;
+  padding-bottom:80px;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* BOTTOM NAV */
+.nav{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:76px;
+  background:#fff;
+  border-top:1px solid var(--border);
+  display:flex;
+  padding:0 4px 12px;
+  z-index:100;
+}
+.nt{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  cursor:pointer;
+  border:none;
+  background:none;
+  padding:8px 4px 0;
+  text-decoration:none;
+}
+.ni{font-size:22px;color:#c0b8b0}
+.nl{font-size:10px;color:#c0b8b0;font-weight:600}
+.nt.on .ni,.nt.on .nl{color:var(--red)}
+
+/* PAGE HEADER */
+.ph{
+  background:#fff;
+  padding:14px 16px 12px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.bk{
+  width:32px;height:32px;
+  background:#f5f5f5;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:none;
+  font-size:18px;color:var(--grey-5);
+  text-decoration:none;
+  flex-shrink:0;
+}
+.ph-t{font-size:15px;font-weight:800;color:var(--black)}
+.ph-s{font-size:11px;color:var(--grey-4)}
+
+/* HERO BANDS */
+.mod-hero{
+  background:var(--red);
+  padding:22px 20px 26px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.mod-hero::before{
+  content:"✝";
+  position:absolute;right:-10px;top:-20px;
+  font-size:140px;
+  color:rgba(255,255,255,0.05);
+  font-family:serif;
+}
+.mh-step{font-size:11px;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:6px}
+.mh-t{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.mh-s{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6}
+
+/* STEP INDICATOR */
+.steps{
+  display:flex;align-items:center;
+  padding:12px 16px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.st{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--grey-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--grey-4);
+  flex-shrink:0;
+}
+.st.d{background:var(--red);color:#fff}
+.st.nw{background:#fff;border:2px solid var(--red);color:var(--red)}
+.stl{flex:1;height:2px;background:var(--grey-2)}
+.stl.d{background:var(--red)}
+
+/* CARDS & GROUPS */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:14px 15px;
+  margin-bottom:11px;
+  border:1px solid var(--border);
+}
+.card-label{
+  font-size:10px;font-weight:800;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:1.1px;
+  margin-bottom:10px;
+}
+
+/* WHAT/WHY/HOW TABS */
+.whw{background:#fff;border-radius:14px;margin-bottom:12px;border:1px solid var(--border);overflow:hidden}
+.wtabs{display:flex;border-bottom:1px solid var(--border)}
+.wtab{
+  flex:1;padding:11px 6px;
+  font-size:13px;font-weight:800;
+  text-align:center;cursor:pointer;
+  color:var(--grey-4);
+  border:none;background:none;
+  font-family:inherit;
+  transition:all 0.15s;
+}
+.wtab.on{color:var(--red);border-bottom:2px solid var(--red);background:#fdfafa}
+.wcont{padding:14px 15px;font-size:13px;color:#333;line-height:1.7;display:none}
+.wcont.on{display:block}
+.wcont b{color:var(--black);font-weight:800}
+.wcont em{color:var(--red);font-style:normal;font-weight:700}
+.wcont .sv{
+  background:var(--red-light);
+  border-left:3px solid var(--red);
+  padding:8px 12px;
+  border-radius:0 8px 8px 0;
+  font-size:12px;
+  color:var(--red-mid);
+  font-style:italic;
+  margin:10px 0;
+  line-height:1.55;
+}
+
+/* DECLARATIONS */
+.decl{
+  background:var(--red);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:12px;
+}
+.dl-l{font-size:10px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:10px}
+.dl-t{font-size:15px;color:#fff;line-height:1.75;font-style:italic;margin-bottom:12px}
+.dl-v{
+  display:flex;align-items:flex-start;gap:7px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,0.15);
+  font-size:12px;color:rgba(255,255,255,0.65);
+  line-height:1.5;
+}
+
+/* PRACTICAL STEPS */
+.prac{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--border)}
+.prac-t{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:11px}
+.pstep{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f8f6f3}
+.pstep:last-child{border-bottom:none;padding-bottom:0}
+.pnum{
+  width:22px;height:22px;
+  background:var(--red-light);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:var(--red);
+  flex-shrink:0;margin-top:1px;
+}
+.ptext{font-size:13px;color:#333;line-height:1.55}
+.ptext b{color:var(--black)}
+
+/* PRESENCE BOX */
+.pres{background:var(--black);border-radius:14px;padding:15px 16px;margin-bottom:12px}
+.pres-l{font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:8px}
+.pres-t{font-size:13px;color:rgba(255,255,255,0.88);line-height:1.65}
+.pres-t b{color:#fff}
+
+/* INFO BOX */
+.info{
+  background:var(--gold-light);
+  border:1px solid #FDE68A;
+  border-radius:12px;
+  padding:11px 13px;
+  font-size:12px;color:#78350F;
+  margin-bottom:12px;
+  line-height:1.55;
+}
+
+/* CHECKLIST */
+.ci{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid #f8f6f3;cursor:pointer}
+.ci:last-child{border-bottom:none;padding-bottom:0}
+.ci input{width:17px;height:17px;accent-color:var(--red);flex-shrink:0;margin-top:2px;cursor:pointer}
+.ci label{font-size:13px;color:#333;line-height:1.5;cursor:pointer}
+
+/* BUTTONS */
+.btn{
+  width:100%;padding:15px;
+  background:var(--red);color:#fff;
+  border:none;border-radius:14px;
+  font-size:15px;font-weight:800;
+  cursor:pointer;margin-bottom:9px;
+  font-family:inherit;
+  letter-spacing:-0.2px;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+.btn:active{opacity:0.85}
+.btn.gh{background:transparent;color:var(--red);border:2px solid var(--red)}
+
+/* TIER SELECTOR */
+.tier{
+  background:#fff;border-radius:12px;
+  padding:11px 13px;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border);flex-wrap:wrap;
+}
+.tl{font-size:11px;color:var(--grey-4);flex-shrink:0}
+.tp{
+  font-size:12px;padding:5px 13px;
+  border-radius:100px;
+  border:1px solid #e0dbd4;
+  background:transparent;color:var(--grey-4);
+  cursor:pointer;font-family:inherit;
+}
+.tp.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* GAMIFICATION */
+.streak-bar{
+  background:#fff;border-radius:16px;
+  padding:14px 16px;margin-bottom:11px;
+  border:1px solid var(--border);
+}
+.streak-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.streak-t{font-size:13px;font-weight:800;color:var(--black)}
+.streak-num{font-size:22px;font-weight:800;color:var(--red)}
+.streak-days{display:flex;gap:5px;margin-bottom:8px}
+.sday{
+  flex:1;height:28px;border-radius:6px;
+  background:var(--grey-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--grey-4);
+}
+.sday.d{background:var(--red);color:#fff}
+.sday.t{background:var(--red-light);border:2px solid var(--red);color:var(--red)}
+.badges-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.badge{
+  background:var(--red-light);color:var(--red-mid);
+  font-size:11px;font-weight:800;
+  padding:5px 11px;border-radius:100px;
+}
+.badge.gold{background:var(--gold-light);color:var(--gold)}
+
+/* MODULE CARD LIST */
+.mod{
+  background:#fff;border-radius:14px;
+  padding:13px 14px;margin-bottom:9px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;gap:11px;
+  cursor:pointer;text-decoration:none;
+}
+.mod.hi{border-color:var(--red)}
+.mod:active{transform:scale(0.99)}
+.mod-ic{
+  width:38px;height:38px;border-radius:11px;
+  background:var(--red-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.mod-ic.lk{background:#f5f5f5;opacity:0.5}
+.mod-b{flex:1}
+.mod-t{font-size:13px;font-weight:700;color:var(--black);margin-bottom:2px}
+.mod-s{font-size:11px;color:var(--grey-4)}
+.mod-chev{font-size:16px;color:#ddd}
+.mod-prog{
+  height:3px;background:var(--grey-2);
+  border-radius:2px;margin-top:5px;overflow:hidden;
+}
+.mod-prog-fill{height:3px;background:var(--red);border-radius:2px}
+
+/* BODY PADDING */
+.mbody{padding:14px}
+.ab{padding:14px}
+
+/* SCRIPTURE MEMORY GAME */
+.mem-card{
+  background:var(--red);border-radius:16px;
+  padding:20px;margin-bottom:12px;
+  text-align:center;
+}
+.mem-ref{font-size:12px;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.mem-text{font-size:16px;color:#fff;line-height:1.7;font-style:italic;margin-bottom:14px}
+.mem-btns{display:flex;gap:8px}
+.mem-btn{
+  flex:1;padding:12px;border-radius:12px;
+  border:none;font-size:13px;font-weight:800;
+  cursor:pointer;font-family:inherit;
+}
+.mem-btn.right{background:#fff;color:var(--red)}
+.mem-btn.wrong{background:rgba(255,255,255,0.15);color:#fff}
+
+/* CRISIS SITUATION CONTENT */
+.sit-content{display:none}
+.sit-content.on{display:block}
+</style>
+<style>
+.atk-hero{background:var(--red-dark);padding:22px 20px 24px}
+.atk-l{font-size:11px;font-weight:800;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:6px}
+.atk-t{font-size:23px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.atk-s{font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6}
+.sit-tabs{display:flex;gap:8px;padding:14px 14px 0;flex-wrap:wrap}
+.sit-btn{
+  font-size:12px;font-weight:800;
+  padding:8px 14px;border-radius:100px;
+  border:1.5px solid var(--border);
+  background:#fff;color:var(--grey-4);
+  cursor:pointer;font-family:inherit;
+  transition:all 0.15s;
+}
+.sit-btn.on{background:var(--red);color:#fff;border-color:var(--red)}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span id="streak-num">●</span></div>
+  <div class="body">
+
+    <div class="atk-hero">
+      <a class="bk" href="../index.html" style="background:rgba(255,255,255,0.15);color:#fff;margin-bottom:14px;display:flex;width:32px;height:32px;border-radius:10px;align-items:center;justify-content:center;text-decoration:none;font-size:18px">‹</a>
+      <div class="atk-l">Crisis — immediate help</div>
+      <div class="atk-t">God is with you.<br>Right now.</div>
+      <div class="atk-s">You don't need to be strong. You need to turn. He is already here — even in this moment. Choose what you're facing below.</div>
+    </div>
+
+    <div class="sit-tabs">
+      <button class="sit-btn on" onclick="setSit(this,'sit-temptation')">🔥 Temptation</button>
+      <button class="sit-btn" onclick="setSit(this,'sit-porn')">📵 Lust/Porn</button>
+      <button class="sit-btn" onclick="setSit(this,'sit-lonely')">😔 Loneliness</button>
+      <button class="sit-btn" onclick="setSit(this,'sit-attack')">⚔️ Attack</button>
+    </div>
+
+    <!-- TEMPTATION -->
+    <div id="sit-temptation" class="sit-content on" style="padding:14px">
+      <div class="pres">
+        <div class="pres-l">What's really happening</div>
+        <div class="pres-t">Temptation is not sin. Jesus was tempted in every way, yet was without sin (Hebrews 4:15). The feeling of desire is not failure — it is a <b>test of where you will direct your will.</b> The enemy uses natural desire as a doorway. God uses the same moment as an invitation to press into Him.</div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Step 1 — Flee immediately</div>
+        <div class="pstep"><div class="pnum">1</div><div class="ptext"><b>Leave the room or environment right now.</b> Do not reason with temptation. Do not negotiate. Scripture says flee — that means physical movement away from the trigger. 1 Corinthians 6:18</div></div>
+        <div class="pstep"><div class="pnum">2</div><div class="ptext"><b>Put down or lock your phone/device.</b> If the temptation is digital, remove the access point completely. Give your phone to someone, leave it in another room.</div></div>
+        <div class="pstep"><div class="pnum">3</div><div class="ptext"><b>Move your body physically.</b> Walk briskly, do press-ups, go outside. Physical movement breaks the neurological loop that temptation creates in the brain.</div></div>
+        <div class="pstep"><div class="pnum">4</div><div class="ptext"><b>Call or text someone immediately.</b> Isolation is the enemy's greatest weapon. One message breaks it. You don't have to confess everything — just make contact.</div></div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declare out loud — right now</div>
+        <div class="dl-t">"I cover myself in the blood of Jesus. I submit to God. I resist you, enemy — you must flee from me. I am not my temptation. I belong to God. Holy Spirit, fill me now. I choose God over this feeling."</div>
+        <div class="dl-v">📖 James 4:7 — "Submit to God, resist the devil, and he will flee from you"<br>📖 1 Corinthians 10:13 — "God will not allow you to be tempted beyond what you can bear — He will provide a way out"</div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Step 2 — Reframe and redirect</div>
+        <div class="pstep"><div class="pnum">5</div><div class="ptext"><b>Identify the underlying need.</b> Ask: am I lonely? Tired? Stressed? Bored? Temptation often masks a deeper need that only God can fill. Name it honestly.</div></div>
+        <div class="pstep"><div class="pnum">6</div><div class="ptext"><b>Redirect your energy to something good.</b> Go to the gym. Serve someone. Read the Word. Worship. Cook. Clean. Give your body and mind something purposeful to do.</div></div>
+        <div class="pstep"><div class="pnum">7</div><div class="ptext"><b>Check your inputs.</b> What did you watch, eat, or expose yourself to today? Certain foods, media, and environments inflame desire. Discipline is built upstream — not in the moment of crisis.</div></div>
+        <div class="pstep"><div class="pnum">8</div><div class="ptext"><b>Set your mind on things above.</b> Philippians 4:8 — think on whatever is true, noble, right, pure, lovely. The mind that stays on God does not gratify the flesh. This is not suppression — it is replacement.</div></div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Step 3 — Prevent recurrence</div>
+        <div class="pstep"><div class="pnum">9</div><div class="ptext"><b>Identify the pattern.</b> When does this happen? What time of day? What precedes it? Demons are predictable — they use the same doors repeatedly. Close them.</div></div>
+        <div class="pstep"><div class="pnum">10</div><div class="ptext"><b>Build accountability.</b> Find one person you trust — a minister, a friend, a counsellor — and be honest with them about this struggle. Accountability is not weakness. It is wisdom.</div></div>
+        <div class="pstep"><div class="pnum">11</div><div class="ptext"><b>Fast strategically.</b> Fasting breaks the power of the flesh over the spirit. Even a one-day fast changes the spiritual atmosphere around you. Daniel fasted and the answer came.</div></div>
+        <div class="pstep"><div class="pnum">12</div><div class="ptext"><b>Use communion regularly.</b> Taking communion covers you in the blood of Jesus and creates a wall of spiritual protection. Do this daily if necessary.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">No condemnation</div>
+        <p style="font-size:13px;color:#333;line-height:1.7">Natural desire is not sin. God created you as a sexual being. The struggle you feel is not evidence of failure — it is evidence that you are <em style="color:var(--red);font-style:normal;font-weight:700">fighting.</em> God honours the fight. He is not looking at your failure — He is looking at where you turn. <br><br>"There is therefore now no condemnation for those who are in Christ Jesus." — Romans 8:1</p>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Closing prayer</div>
+        <div class="dl-t">"Lord, I come to You through the blood of Jesus. I am weak but You are strong. I surrender this desire to You — not to suppress it but to redirect it toward You. Fill this space with Your presence. Teach me to find in You what I have been seeking elsewhere. I trust You. Amen."</div>
+        <div class="dl-v">📖 Psalm 73:25 — "Whom have I in heaven but You? And earth has nothing I desire besides You"</div>
+      </div>
+
+      <a class="btn" href="../index.html">Return to my journey</a>
+    </div>
+
+    <!-- LUST/PORN -->
+    <div id="sit-porn" class="sit-content" style="padding:14px">
+      <div class="pres">
+        <div class="pres-l">What's really happening</div>
+        <div class="pres-t">Pornography is not just a habit — it is a <b>spiritual doorway and a neurological trap.</b> It creates soul ties with images and performers. It rewires the brain's reward system so that real intimacy feels less stimulating than fantasy. It gives demons legal ground through the eyes — the gateway of lust. But <b>there is a way out.</b> God's presence is more powerful than any addiction.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">The lie vs the truth</div>
+        <div class="pstep" style="border:none;padding:6px 0"><div class="pnum" style="background:#fee2e2;color:#b91c1c">✗</div><div class="ptext"><b>Lie:</b> "It's not hurting anyone." <b>Truth:</b> It is creating soul ties, giving demons legal ground, hardening your heart, and making real covenant intimacy harder to achieve.</div></div>
+        <div class="pstep" style="border:none;padding:6px 0"><div class="pnum" style="background:#fee2e2;color:#b91c1c">✗</div><div class="ptext"><b>Lie:</b> "I can't stop." <b>Truth:</b> "No temptation has overtaken you except what is common to mankind. God will provide a way out." — 1 Corinthians 10:13</div></div>
+        <div class="pstep" style="border:none;padding:6px 0"><div class="pnum" style="background:#fee2e2;color:#b91c1c">✗</div><div class="ptext"><b>Lie:</b> "God is disgusted with me." <b>Truth:</b> "He who comes to me I will never cast out." — John 6:37</div></div>
+        <div class="pstep" style="border:none;padding:6px 0"><div class="pnum" style="background:#fee2e2;color:#b91c1c">✗</div><div class="ptext"><b>Lie:</b> "This is just who I am." <b>Truth:</b> "Therefore if anyone is in Christ, he is a new creation — the old has gone, the new has come." — 2 Corinthians 5:17</div></div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Right now — immediate steps</div>
+        <div class="pstep"><div class="pnum">1</div><div class="ptext"><b>Close everything immediately.</b> Close every tab, every app, every window. Physical action first — don't linger.</div></div>
+        <div class="pstep"><div class="pnum">2</div><div class="ptext"><b>Speak out loud:</b> "I renounce what I just saw/did. I cover my eyes and mind in the blood of Jesus. I command every spirit of lust and perversion that entered through this to leave now in the name of Jesus."</div></div>
+        <div class="pstep"><div class="pnum">3</div><div class="ptext"><b>Move physically.</b> Go to another room, another location. Put physical distance between yourself and the device.</div></div>
+        <div class="pstep"><div class="pnum">4</div><div class="ptext"><b>Don't spiral into shame.</b> Shame keeps you in the cycle. Instead, repent quickly and turn toward God — not away from Him. The prodigal son ran home, not further away.</div></div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declaration — say out loud</div>
+        <div class="dl-t">"I repent of what I have just done. I cover myself in the blood of Jesus. I renounce every soul tie formed with every image or person I have seen. I command every spirit of lust, perversion, and addiction to leave me now in the name of Jesus. I receive God's forgiveness. I am clean. I am free. Holy Spirit, fill me now."</div>
+        <div class="dl-v">📖 1 John 1:9 — "If we confess our sins, He is faithful and just to forgive us and cleanse us from all unrighteousness"<br>📖 Job 31:1 — "I made a covenant with my eyes not to look lustfully"</div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Breaking the cycle — longer term</div>
+        <div class="pstep"><div class="pnum">5</div><div class="ptext"><b>Install accountability software</b> on all your devices (Covenant Eyes, Bark). This is not weakness — it is wisdom. A man who is serious about freedom removes the access point.</div></div>
+        <div class="pstep"><div class="pnum">6</div><div class="ptext"><b>Identify your triggers.</b> Time of day? Mood? Stress level? Alone time? Build barriers upstream — not just in the moment of temptation.</div></div>
+        <div class="pstep"><div class="pnum">7</div><div class="ptext"><b>Fill the void.</b> Pornography fills loneliness, boredom, stress, and emotional pain. What is the underlying wound? That is where the real healing needs to happen. Use the emotional traps module.</div></div>
+        <div class="pstep"><div class="pnum">8</div><div class="ptext"><b>Seek a deliverance minister.</b> If this has been a long-term struggle, there may be demonic legal ground that needs to be broken with support. You do not have to do this alone.</div></div>
+      </div>
+
+      <a class="btn" href="../index.html">Return to my journey</a>
+    </div>
+
+    <!-- LONELINESS -->
+    <div id="sit-lonely" class="sit-content" style="padding:14px">
+      <div class="pres">
+        <div class="pres-l">What loneliness really is</div>
+        <div class="pres-t">Loneliness is not a character flaw. It is a <b>spiritual signal</b> — your soul crying out for the presence of God and genuine human connection. God said "it is not good for man to be alone" — He designed you for community and intimacy. But the enemy uses loneliness as a doorway to sexual sin, depression, and isolation. <b>The antidote is presence — God's presence first, then human connection.</b></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Why loneliness is dangerous spiritually</div>
+        <p style="font-size:13px;color:#333;line-height:1.7">When you are lonely, the enemy offers counterfeits — pornography, fantasy, casual sex, masturbation, emotional dependency on wrong relationships. These temporarily fill the void but deepen the wound and create new legal ground.<br><br>Covetousness — comparing your life with others, wanting what they have — is a major spiritual trap for lonely people. Scripture says "those who compare themselves are not wise." (2 Corinthians 10:12). Comparison produces dissatisfaction, bitterness, and deeper isolation.</p>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Right now — practical steps</div>
+        <div class="pstep"><div class="pnum">1</div><div class="ptext"><b>Acknowledge it to God honestly.</b> Don't pretend. Say: "Lord, I am lonely. I need Your presence. Come." He is not surprised by this — He is moved by it.</div></div>
+        <div class="pstep"><div class="pnum">2</div><div class="ptext"><b>Contact one real person.</b> Text, call, or visit someone. Do not let loneliness become isolation. Even a brief conversation breaks the spiritual atmosphere.</div></div>
+        <div class="pstep"><div class="pnum">3</div><div class="ptext"><b>Worship.</b> Put on worship music and engage with it. Worship is not passive background noise — it is an active invitation of God's presence, which is the only real answer to loneliness.</div></div>
+        <div class="pstep"><div class="pnum">4</div><div class="ptext"><b>Serve someone.</b> Go and do something for another person. This is the fastest way out of self-focus and into the presence of God. "As you did it to the least of these, you did it to me." — Matthew 25:40</div></div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declaration — say out loud</div>
+        <div class="dl-t">"Lord, I acknowledge I am lonely. But You are with me. You said You would never leave me nor forsake me. I renounce the lie that I am alone. I renounce comparison and covetousness. I choose to be content in You. Fill me with Your presence now. You are enough. You are my portion."</div>
+        <div class="dl-v">📖 Hebrews 13:5 — "Never will I leave you; never will I forsake you"<br>📖 Psalm 16:11 — "In Your presence there is fullness of joy"<br>📖 Philippians 4:11 — "I have learned in whatever state I am, to be content"</div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Building a life that defeats loneliness</div>
+        <div class="pstep"><div class="pnum">5</div><div class="ptext"><b>Build community intentionally.</b> Find a church that moves in the power of the Holy Spirit. Attend a small group. Vulnerability in safe community is healing.</div></div>
+        <div class="pstep"><div class="pnum">6</div><div class="ptext"><b>For singles — understand God's gift of singleness.</b> 1 Corinthians 7:32-35: a single person has more time and energy for God. This is not a curse — it is a calling. Channel that energy into kingdom work.</div></div>
+        <div class="pstep"><div class="pnum">7</div><div class="ptext"><b>Break bread with people regularly.</b> Communion — whether formal or informal, sharing meals — is a spiritual act of community that God honours. Do not forsake gathering together (Hebrews 10:25).</div></div>
+        <div class="pstep"><div class="pnum">8</div><div class="ptext"><b>Be disciplined about what you fill your mind with.</b> Social media amplifies loneliness by showing curated versions of other people's lives. Limit it and replace it with the Word.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">The cross and loneliness</div>
+        <p style="font-size:13px;color:#333;line-height:1.7">Jesus cried from the cross: "My God, my God, why have You forsaken me?" He experienced the deepest loneliness possible — complete separation from the Father — so that <em style="color:var(--red);font-style:normal;font-weight:700">you would never have to.</em> Your loneliness was carried in His body on the cross. You are never truly alone.</p>
+      </div>
+
+      <a class="btn" href="../index.html">Return to my journey</a>
+    </div>
+
+    <!-- SPIRITUAL ATTACK -->
+    <div id="sit-attack" class="sit-content" style="padding:14px">
+      <div class="pres">
+        <div class="pres-l">Understanding spiritual attack</div>
+        <div class="pres-t">Not every difficulty is a spiritual attack — but some is. Indicators include: sudden overwhelming negative thoughts, sexual dreams or night terrors, oppression that lifts and returns, compulsions that feel stronger than your will, fear that has no natural source. <b>You have authority over this — through Christ.</b></div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Step 1 — Establish your position</div>
+        <div class="pstep"><div class="pnum">1</div><div class="ptext"><b>Submit to God first.</b> James 4:7 — submit first, THEN resist. You cannot effectively resist the enemy from a position of unsubmission to God. Quickly repent of anything you know is not right.</div></div>
+        <div class="pstep"><div class="pnum">2</div><div class="ptext"><b>Know your authority.</b> Luke 10:19 — "I have given you authority to trample on snakes and scorpions and to overcome all the power of the enemy." This is your authority in Christ — not earned, but given.</div></div>
+        <div class="pstep"><div class="pnum">3</div><div class="ptext"><b>Put on the full armour of God.</b> Ephesians 6:10-18 — helmet of salvation and hope, breastplate of righteousness, belt of truth, shield of faith, shoes of peace, sword of the Spirit (the Word). Do this verbally and intentionally.</div></div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declaration 1 — Authority</div>
+        <div class="dl-t">"In the name of Jesus Christ, I declare that I have authority over every spirit attacking me. I am a child of God, seated in heavenly places in Christ. You are a defeated enemy — Jesus triumphed over you at the cross. I bind you now in the name of Jesus. You are bound. You cannot move against me."</div>
+        <div class="dl-v">📖 Colossians 2:15 — "Having disarmed the powers, He made a public spectacle of them, triumphing over them by the cross"</div>
+      </div>
+
+      <div class="decl">
+        <div class="dl-l">Declaration 2 — Command</div>
+        <div class="dl-t">"I command every spirit attacking me to leave now in the name of Jesus. Go to where Jesus sends you. You have no legal right to be here. Every door you entered through is now closed under the blood of Jesus. I cover myself, my home, and my family in the blood of Jesus. Holy Spirit — fill every place they occupied."</div>
+        <div class="dl-v">📖 Mark 16:17 — "In my name they will drive out demons"<br>📖 Revelation 12:11 — "They overcame him by the blood of the Lamb and the word of their testimony"</div>
+      </div>
+
+      <div class="prac">
+        <div class="prac-t">Night terrors and sexual spirits</div>
+        <div class="pstep"><div class="pnum">1</div><div class="ptext"><b>Before sleep, declare:</b> "I cover my mind, my body, and my sleep in the blood of Jesus. I bind every spirit of terror, every sexual spirit (succubus/incubus), and every dream that does not come from God. My sleep belongs to God. He gives sleep to His beloved."</div></div>
+        <div class="pstep"><div class="pnum">2</div><div class="ptext"><b>If you wake from a night terror,</b> speak out loud immediately: "I rebuke this in Jesus's name. I cover myself in the blood. Holy Spirit, I invite Your peace." The spoken word is more powerful than thought in the night hours.</div></div>
+        <div class="pstep"><div class="pnum">3</div><div class="ptext"><b>Check for legal ground.</b> Recurring night attacks often indicate open legal ground — unforgiveness, sin, occult involvement, or generational curses. Work through the legal ground module.</div></div>
+        <div class="pstep"><div class="pnum">4</div><div class="ptext"><b>Worship before sleep.</b> Playing worship music as you sleep changes the spiritual atmosphere of your room. Demons cannot remain where genuine worship of Jesus is happening.</div></div>
+      </div>
+
+      <div class="pres">
+        <div class="pres-l">Legal ground reminder</div>
+        <div class="pres-t">If attacks are persistent, ask the Holy Spirit: "What legal ground does the enemy have in my life?" He will show you. Then confess, repent, renounce, and cover in the blood. <b>A closed door cannot be pushed open.</b> The enemy only has access where he has been given it.</div>
+      </div>
+
+      <a class="btn" href="../index.html">Return to my journey</a>
+      <a class="btn gh" href="../modules/legal-ground.html">Go to legal ground module →</a>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <a class="nt" href="../index.html" data-page="home"><span class="ni">🏠</span><span class="nl">Home</span></a>
+    <a class="nt" href="../assess.html" data-page="assess"><span class="ni">☑️</span><span class="nl">Assess</span></a>
+    <a class="nt" href="../journey.html" data-page="journey"><span class="ni">🗺️</span><span class="nl">Journey</span></a>
+    <a class="nt on" href="index.html" data-page="crisis"><span class="ni">🛡️</span><span class="nl">Crisis</span></a>
+    <a class="nt" href="../pathway.html" data-page="profile"><span class="ni">👤</span><span class="nl">Profile</span></a>
+  </div>
+</div>
+<script>// Navigation active state
+function setNav(page) {
+  document.querySelectorAll('.nt').forEach(n => n.classList.remove('on'));
+  const el = document.querySelector(`.nt[data-page="${page}"]`);
+  if (el) el.classList.add('on');
+}
+
+// Tier selector
+function setTier(btn) {
+  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const tier = btn.textContent.trim().toLowerCase();
+  localStorage.setItem('tier', tier);
+}
+
+// Load saved tier
+function loadTier() {
+  const saved = localStorage.getItem('tier') || 'gentle';
+  document.querySelectorAll('.tp').forEach(b => {
+    if (b.textContent.trim().toLowerCase() === saved) b.classList.add('on');
+    else b.classList.remove('on');
+  });
+}
+
+// What/Why/How tabs
+function whw(btn, id) {
+  btn.closest('.whw').querySelectorAll('.wtab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  btn.closest('.whw').querySelectorAll('.wcont').forEach(c => c.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+// Crisis situation switcher
+function setSit(btn, id) {
+  btn.closest('.tier').querySelectorAll('.tp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.sit-content').forEach(c => c.classList.remove('on'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('on');
+}
+
+// Gamification - streak
+function getStreak() {
+  return parseInt(localStorage.getItem('streak') || '0');
+}
+
+function updateStreak() {
+  const last = localStorage.getItem('lastVisit');
+  const today = new Date().toDateString();
+  if (last === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  let streak = getStreak();
+  if (last === yesterday) streak++;
+  else streak = 1;
+  localStorage.setItem('streak', streak);
+  localStorage.setItem('lastVisit', today);
+}
+
+function renderStreak() {
+  const el = document.getElementById('streak-num');
+  if (el) el.textContent = getStreak() + ' day streak 🔥';
+}
+
+// Module completion
+function getCompleted() {
+  return JSON.parse(localStorage.getItem('completed') || '[]');
+}
+
+function markComplete(module) {
+  const list = getCompleted();
+  if (!list.includes(module)) {
+    list.push(module);
+    localStorage.setItem('completed', JSON.stringify(list));
+  }
+  // Award points
+  let pts = parseInt(localStorage.getItem('points') || '0');
+  pts += 100;
+  localStorage.setItem('points', pts);
+  showCelebration();
+}
+
+function showCelebration() {
+  const el = document.getElementById('celebration');
+  if (!el) return;
+  el.style.display = 'flex';
+  setTimeout(() => { el.style.display = 'none'; }, 3000);
+}
+
+function getPoints() {
+  return parseInt(localStorage.getItem('points') || '0');
+}
+
+function renderProgress() {
+  const completed = getCompleted();
+  const total = 12; // total modules
+  const pct = Math.round((completed.length / total) * 100);
+
+  const fill = document.getElementById('progress-fill');
+  const pctEl = document.getElementById('progress-pct');
+  if (fill) fill.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+
+  // Render module progress dots
+  document.querySelectorAll('.mod[data-module]').forEach(mod => {
+    const id = mod.getAttribute('data-module');
+    const prog = mod.querySelector('.mod-prog-fill');
+    if (prog && completed.includes(id)) prog.style.width = '100%';
+  });
+
+  // Points
+  const pts = document.getElementById('points-display');
+  if (pts) pts.textContent = getPoints() + ' pts';
+}
+
+// Scripture memory
+let currentVerse = 0;
+const verses = [
+  { ref: 'John 8:36', text: 'If the Son sets you free, you will be free indeed.' },
+  { ref: 'Romans 8:1', text: 'There is now no condemnation for those who are in Christ Jesus.' },
+  { ref: 'James 4:7', text: 'Submit to God, resist the devil, and he will flee from you.' },
+  { ref: '1 Corinthians 6:18', text: 'Flee from sexual immorality. Every other sin a person commits is outside the body, but the sexually immoral person sins against his own body.' },
+  { ref: 'Romans 12:2', text: 'Do not conform to the pattern of this world, but be transformed by the renewing of your mind.' },
+  { ref: 'Psalm 119:9', text: 'How can a young person keep their way pure? By living according to your word.' },
+  { ref: '2 Corinthians 10:5', text: 'We take captive every thought to make it obedient to Christ.' },
+  { ref: 'Philippians 4:8', text: 'Whatever is true, whatever is noble, whatever is right, whatever is pure — think about such things.' },
+  { ref: 'Galatians 2:20', text: 'I have been crucified with Christ. I no longer live, but Christ lives in me.' },
+  { ref: 'Isaiah 54:17', text: 'No weapon formed against you shall prosper.' },
+];
+
+function loadVerse() {
+  const v = verses[currentVerse % verses.length];
+  const ref = document.getElementById('mem-ref');
+  const text = document.getElementById('mem-text');
+  if (ref) ref.textContent = v.ref;
+  if (text) text.textContent = v.text;
+}
+
+function nextVerse(knew) {
+  if (knew) {
+    let pts = getPoints();
+    pts += 10;
+    localStorage.setItem('points', pts);
+    renderProgress();
+  }
+  currentVerse++;
+  loadVerse();
+}
+
+// Checklist saving
+function saveChecklist() {
+  const checks = {};
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    checks[cb.id] = cb.checked;
+  });
+  localStorage.setItem('checklist', JSON.stringify(checks));
+}
+
+function loadChecklist() {
+  const saved = JSON.parse(localStorage.getItem('checklist') || '{}');
+  Object.entries(saved).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.checked = val;
+  });
+}
+
+// Init on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateStreak();
+  renderStreak();
+  renderProgress();
+  loadTier();
+  loadChecklist();
+  loadVerse();
+});
+</script>
+<script>
+function setSit(btn, id) {
+  document.querySelectorAll('.sit-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.sit-content').forEach(c => c.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  document.querySelector('.body').scrollTop = 200;
+}
+setNav('crisis');
+</script>
+</body>
+</html>
